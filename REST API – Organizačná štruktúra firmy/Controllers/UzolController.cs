@@ -7,45 +7,45 @@ namespace REST_API___Organizačná_štruktúra_firmy.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UtvarController : ControllerBase
+    public class UzolController : ControllerBase
     {
         private readonly OrgStructContext _context;
 
-        public UtvarController(OrgStructContext context)
+        public UzolController(OrgStructContext context)
         {
             _context = context;
         }
 
-        //Get : api/Utvar
+        //Get : api/Uzol
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Utvar>>> GetUtvary()
+        public async Task<ActionResult<IEnumerable<Uzol>>> GetUzly()
         {
-            if(_context.Utvary is null)
+            if(_context.Uzly is null)
             {
                 return NotFound();
             }
-            return await _context.Utvary.ToListAsync();
+            return await _context.Uzly.ToListAsync();
         }
 
-        //Post : api/Utvar
+        //Post : api/Uzol
         [HttpPost]
-        public async Task<ActionResult<Utvar>> PostUtvar(Utvar utvar)
+        public async Task<ActionResult<Uzol>> PostUzol(Uzol uzol)
         {
-            _context.Utvary.Add(utvar);
+            _context.Uzly.Add(uzol);
             await _context.SaveChangesAsync();
             return Ok();
         }
 
-        //Put : api/Utvar/{id}
+        //Put : api/Uzol/{id}
         [HttpPut]
-        public async Task<ActionResult<Utvar>> PutUtvar(int kod, Utvar utvar)
+        public async Task<ActionResult<Uzol>> PutUzol(int kod, Uzol uzol)
         {
-            if(kod != utvar.Kod)
+            if(kod != uzol.Kod)
             {
                 return BadRequest();
             }
 
-            _context.Entry(utvar).State = EntityState.Modified;
+            _context.Entry(uzol).State = EntityState.Modified;
 
             try
             {
@@ -53,7 +53,7 @@ namespace REST_API___Organizačná_štruktúra_firmy.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if(!UtvarExists(kod))
+                if(!UzolExists(kod))
                 {
                     return NotFound();
                 }
@@ -65,27 +65,27 @@ namespace REST_API___Organizačná_štruktúra_firmy.Controllers
             return Ok();
         }
 
-        //Delete: api/Movies/id
+        //Delete: api/Uzol/id
         [HttpDelete("{kod}")]
-        public async Task<ActionResult<Utvar>> DeleteUtvar(int kod)
+        public async Task<ActionResult<Uzol>> DeleteUzol(int kod)
         {
-            if(_context.Utvary is null)
+            if(_context.Uzly is null)
             { 
                 return NotFound(); 
             }
-            var utvar = await _context.Utvary.FindAsync(kod);
-            if(utvar == null)
+            var uzol = await _context.Uzly.FindAsync(kod);
+            if(uzol == null)
             {
                 return NotFound();
             }
-            _context.Utvary.Remove(utvar);
+            _context.Uzly.Remove(uzol);
             await _context.SaveChangesAsync();
             return Ok();
         }
 
-        private bool UtvarExists(int kod)
+        private bool UzolExists(int kod)
         {
-            return (_context.Utvary?.Any(utvar => utvar.Kod == kod)).GetValueOrDefault();
+            return (_context.Uzly?.Any(uzol => uzol.Kod == kod)).GetValueOrDefault();
         }
     }
 }

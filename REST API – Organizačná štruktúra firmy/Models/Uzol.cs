@@ -2,7 +2,7 @@
 
 namespace REST_API___Organizačná_štruktúra_firmy.Models
 {
-    public class Utvar
+    public class Uzol
     {
 
         [Key]
@@ -10,6 +10,6 @@ namespace REST_API___Organizačná_štruktúra_firmy.Models
         public string? Nazov { get; set; }
         public int VeduciId { get; set; }
         public char Typ { get; set; }
-        public int? RodicUtvar { get; set; }
+        public int? RodicUzol { get; set; }
     }
 }

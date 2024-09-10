@@ -10,8 +10,8 @@ namespace REST_API___Organizačná_štruktúra_firmy.Models
 
         }
 
-        public DbSet<Uzol> Uzly { get; set; } = null;
-        public DbSet<Zamestnanec> Zamestnanci { get; set; } = null;
+        public DbSet<Uzol> Uzly { get; set; } = null!;
+        public DbSet<Zamestnanec> Zamestnanci { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -24,6 +24,7 @@ namespace REST_API___Organizačná_štruktúra_firmy.Controllers
             {
                 return NotFound();
             }
+
             return await _context.Uzly.ToListAsync();
         }
 
@@ -33,7 +34,8 @@ namespace REST_API___Organizačná_štruktúra_firmy.Controllers
         {
             _context.Uzly.Add(uzol);
             await _context.SaveChangesAsync();
-            return Ok();
+
+            return Ok(uzol);
         }
 
         //Put : api/Uzol/{id}
@@ -62,7 +64,8 @@ namespace REST_API___Organizačná_štruktúra_firmy.Controllers
                     throw;
                 }
             }
-            return Ok();
+
+            return Ok(uzol);
         }
 
         //Delete: api/Uzol/id
@@ -73,14 +76,18 @@ namespace REST_API___Organizačná_štruktúra_firmy.Controllers
             { 
                 return NotFound(); 
             }
+
             var uzol = await _context.Uzly.FindAsync(kod);
+
             if(uzol == null)
             {
                 return NotFound();
             }
+
             _context.Uzly.Remove(uzol);
             await _context.SaveChangesAsync();
-            return Ok();
+
+            return Ok(uzol);
         }
 
         private bool UzolExists(int kod)

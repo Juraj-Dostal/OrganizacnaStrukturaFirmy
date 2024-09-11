@@ -21,7 +21,7 @@ namespace REST_API___Organizačná_štruktúra_firmy.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Zamestnanec>>> GetZamestnanci()
         {
-            if (_context.Zamestnanci == null)
+            if (_context.Zamestnanci is null)
             {
                 return NotFound();
             }
@@ -66,7 +66,7 @@ namespace REST_API___Organizačná_štruktúra_firmy.Controllers
                 }
             }
             
-            return NoContent();
+            return Ok(zamestnanec);
         }
 
         //Delete : api/Zamestnanec/id
@@ -85,7 +85,7 @@ namespace REST_API___Organizačná_štruktúra_firmy.Controllers
             _context.Zamestnanci.Remove(zamestnanec);
             await _context.SaveChangesAsync();
             
-            return NoContent();
+            return Ok(zamestnanec);
 
         }
 
